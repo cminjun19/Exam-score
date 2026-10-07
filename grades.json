@@ -1,10 +1,19 @@
 [
     {
-        "gradeCode": "1",
-        "studentId": "1",
-        "name": "1",
-        "password": "1",
-        "semester": "2026학년도 1학기",
+        "gradeCode": "A7K29P",
+        "studentId": "20260001",
+        "name": "홍길동",
+        "password": "123456",
+
+        "date": "2026.10.07.",
+
+        "schoolYear": "2026학년도",
+        "semester": "2학기",
+        "grade": "1학년",
+        "examName": "1차 정기시험",
+        "className": "3",
+        "number": "12",
+
         "subjects": [
             {
                 "name": "국어",
@@ -23,15 +32,26 @@
                 "score": 90
             }
         ],
+
         "average": "91.3"
     },
+
 
     {
         "gradeCode": "B4M82Q",
         "studentId": "20260002",
         "name": "김민수",
         "password": "654321",
-        "semester": "2026학년도 1학기",
+
+        "date": "2026.10.07.",
+
+        "schoolYear": "2025학년도",
+        "semester": "1학기",
+        "grade": "2학년",
+        "examName": "중간고사",
+        "className": "5",
+        "number": "7",
+
         "subjects": [
             {
                 "name": "국어",
@@ -50,6 +70,45 @@
                 "score": 94
             }
         ],
+
         "average": "91.0"
+    },
+
+
+    {
+        "gradeCode": "C9P31X",
+        "studentId": "20260003",
+        "name": "이서연",
+        "password": "246810",
+
+        "date": "2026.10.07.",
+
+        "schoolYear": "2026학년도",
+        "semester": "2학기",
+        "grade": "3학년",
+        "examName": "기말고사",
+        "className": "2",
+        "number": "18",
+
+        "subjects": [
+            {
+                "name": "국어",
+                "score": 97
+            },
+            {
+                "name": "수학",
+                "score": 91
+            },
+            {
+                "name": "영어",
+                "score": 94
+            },
+            {
+                "name": "과학",
+                "score": 98
+            }
+        ],
+
+        "average": "95.0"
     }
 ]
