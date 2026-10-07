@@ -1,9 +1,9 @@
 [
     {
-        "gradeCode": "A7K29P",
-        "studentId": "20260001",
-        "name": "홍길동",
-        "password": "123456",
+        "gradeCode": "1",
+        "studentId": "1",
+        "name": "1",
+        "password": "1",
         "semester": "2026학년도 1학기",
         "subjects": [
             {
