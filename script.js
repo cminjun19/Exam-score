@@ -1,26 +1,46 @@
 let gradeData = [];
 
-// 성적 데이터 불러오기
+
+/* =========================
+   성적 데이터 불러오기
+========================= */
+
 fetch("grades.json")
     .then(response => {
+
         if (!response.ok) {
-            throw new Error("성적 데이터를 불러올 수 없습니다.");
+            throw new Error("grades.json을 불러오지 못했습니다.");
         }
 
         return response.json();
+
     })
     .then(data => {
+
         gradeData = data;
+
     })
     .catch(error => {
+
         console.error(error);
+
     });
 
 
-const searchButton = document.getElementById("searchButton");
 
-searchButton.addEventListener("click", searchGrade);
+/* =========================
+   조회 버튼
+========================= */
 
+document
+    .getElementById("searchButton")
+    .addEventListener("click", searchGrade);
+
+
+
+/* =========================
+   성적 조회
+========================= */
 
 function searchGrade() {
 
@@ -40,84 +60,169 @@ function searchGrade() {
     const errorMessage =
         document.getElementById("errorMessage");
 
+    const report =
+        document.getElementById("report");
 
-    // 입력값 확인
-    if (!gradeCode || !studentId || !studentName || !password) {
+
+    errorMessage.textContent = "";
+
+
+    /* 입력 확인 */
+
+    if (
+        gradeCode === "" ||
+        studentId === "" ||
+        studentName === "" ||
+        password === ""
+    ) {
 
         errorMessage.textContent =
             "모든 정보를 입력해주세요.";
+
+        report.style.display = "none";
 
         return;
     }
 
 
-    // 데이터 대조
+    /* 데이터 대조 */
+
     const student = gradeData.find(item =>
+
         item.gradeCode === gradeCode &&
         item.studentId === studentId &&
         item.name === studentName &&
         item.password === password
+
     );
 
 
-    // 일치하지 않을 경우
+    /* 일치하지 않음 */
+
     if (!student) {
 
         errorMessage.textContent =
             "입력한 정보가 일치하지 않습니다.";
 
-        document.getElementById("report").style.display = "none";
+        report.style.display = "none";
 
         return;
     }
 
 
-    // 오류 메시지 삭제
-    errorMessage.textContent = "";
-
-
-    // 성적표 초기화
-    const report =
-        document.getElementById("report");
+    /* 조회 성공 */
 
     report.style.display = "block";
 
 
+    /* 기존 내용 초기화 */
+
+    document.getElementById("reportDate").textContent = "";
+
+    document.getElementById("schoolYear").textContent = "";
+
     document.getElementById("semester").textContent = "";
-    document.getElementById("name").textContent = "";
+
+    document.getElementById("grade").textContent = "";
+
+    document.getElementById("examName").textContent = "";
+
+    document.getElementById("className").textContent = "";
+
     document.getElementById("studentNumber").textContent = "";
+
+    document.getElementById("studentNameResult").textContent = "";
+
     document.getElementById("subjectList").innerHTML = "";
+
     document.getElementById("average").textContent = "";
 
 
-    // 성적표 출력 시작
+    /*
+        타자기 출력 시작
+    */
+
     typeText(
-        document.getElementById("semester"),
-        student.semester,
-        40,
+        document.getElementById("reportDate"),
+        student.date,
+        35,
+
         () => {
 
             typeText(
-                document.getElementById("name"),
-                student.name,
-                40,
+                document.getElementById("schoolYear"),
+                student.schoolYear,
+                35,
+
                 () => {
 
                     typeText(
-                        document.getElementById("studentNumber"),
-                        student.studentId,
-                        40,
+                        document.getElementById("semester"),
+                        student.semester,
+                        35,
+
                         () => {
 
-                            typeSubjects(
-                                student.subjects,
-                                0,
+                            typeText(
+                                document.getElementById("grade"),
+                                student.grade,
+                                35,
+
                                 () => {
 
                                     typeText(
-                                        document.getElementById("average"),
-                                        student.average,
-                                        50
+                                        document.getElementById("examName"),
+                                        student.examName,
+                                        35,
+
+                                        () => {
+
+                                            typeText(
+                                                document.getElementById("className"),
+                                                student.className,
+                                                35,
+
+                                                () => {
+
+                                                    typeText(
+                                                        document.getElementById("studentNumber"),
+                                                        student.number,
+                                                        35,
+
+                                                        () => {
+
+                                                            typeText(
+                                                                document.getElementById("studentNameResult"),
+                                                                student.name,
+                                                                45,
+
+                                                                () => {
+
+                                                                    typeSubjects(
+                                                                        student.subjects,
+                                                                        0,
+
+                                                                        () => {
+
+                                                                            typeText(
+                                                                                document.getElementById("average"),
+                                                                                student.average,
+                                                                                45
+                                                                            );
+
+                                                                        }
+                                                                    );
+
+                                                                }
+                                                            );
+
+                                                        }
+                                                    );
+
+                                                }
+                                            );
+
+                                        }
                                     );
 
                                 }
@@ -131,42 +236,70 @@ function searchGrade() {
 
         }
     );
+
 }
 
 
-// 글자를 한 글자씩 출력
-function typeText(element, text, speed, callback) {
+
+/* =========================
+   글자 하나씩 출력
+========================= */
+
+function typeText(
+    element,
+    text,
+    speed,
+    callback
+) {
 
     element.classList.add("typing");
 
     let index = 0;
 
+    text = String(text);
+
+
     function type() {
 
         if (index < text.length) {
 
-            element.textContent += text[index];
+            element.textContent +=
+                text[index];
 
             index++;
 
             setTimeout(type, speed);
 
-        } else {
+        }
+
+        else {
 
             element.classList.remove("typing");
 
             if (callback) {
                 callback();
             }
+
         }
+
     }
 
+
     type();
+
 }
 
 
-// 과목을 한 줄씩 출력
-function typeSubjects(subjects, index, callback) {
+
+/* =========================
+   과목 출력
+========================= */
+
+function typeSubjects(
+    subjects,
+    index,
+    callback
+) {
 
     if (index >= subjects.length) {
 
@@ -178,7 +311,9 @@ function typeSubjects(subjects, index, callback) {
     }
 
 
-    const subject = subjects[index];
+    const subject =
+        subjects[index];
+
 
     const row =
         document.createElement("tr");
@@ -186,6 +321,7 @@ function typeSubjects(subjects, index, callback) {
 
     const nameCell =
         document.createElement("td");
+
 
     const scoreCell =
         document.createElement("td");
@@ -200,17 +336,25 @@ function typeSubjects(subjects, index, callback) {
         .appendChild(row);
 
 
+    /* 과목명 */
+
     typeText(
         nameCell,
         subject.name,
         45,
+
         () => {
+
+            /* 점수 */
 
             typeText(
                 scoreCell,
-                String(subject.score),
+                subject.score,
                 45,
+
                 () => {
+
+                    /* 다음 과목 */
 
                     typeSubjects(
                         subjects,
@@ -223,4 +367,5 @@ function typeSubjects(subjects, index, callback) {
 
         }
     );
+
 }
