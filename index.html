@@ -9,67 +9,102 @@
 
 <body>
 
-    <main class="container">
+<div class="container">
 
-        <section class="login-box">
-            <h1>성적 조회</h1>
-            <p class="description">성적 조회에 필요한 정보를 입력하세요.</p>
+    <!-- 조회 화면 -->
+    <section class="login-box">
 
-            <input id="gradeCode" type="text" placeholder="성적 코드">
-            <input id="studentId" type="text" placeholder="학번">
-            <input id="studentName" type="text" placeholder="이름">
-            <input id="password" type="password" placeholder="비밀번호">
+        <h1>성적 조회</h1>
 
-            <button id="searchButton">성적 조회</button>
+        <p>성적 조회에 필요한 정보를 입력하세요.</p>
 
-            <p id="errorMessage"></p>
-        </section>
+        <input id="gradeCode" type="text" placeholder="성적 코드">
+        <input id="studentId" type="text" placeholder="학번">
+        <input id="studentName" type="text" placeholder="이름">
+        <input id="password" type="password" placeholder="비밀번호">
+
+        <button id="searchButton">조회하기</button>
+
+        <div id="errorMessage"></div>
+
+    </section>
+
+
+    <!-- 성적표 -->
+    <section id="report" class="report">
+
+        <!-- 상단 날짜 -->
+        <div class="report-top">
+            <div id="reportDate"></div>
+        </div>
+
+
+        <!-- 제목 -->
+        <h1 class="report-title">성적 통지표</h1>
+
+
+        <!-- 시험 정보 -->
+        <div class="exam-info">
+
+            <span class="book-icon">▣</span>
+
+            <span id="schoolYear"></span>
+            <span id="semester"></span>
+            <span id="grade"></span>
+            <span id="examName"></span>
+
+            <span>
+                <span id="className"></span>반
+            </span>
+
+            <span>
+                <span id="studentNumber"></span>번
+            </span>
+
+        </div>
+
+
+        <!-- 성명 -->
+        <div class="student-info">
+
+            <span>성명 :</span>
+
+            <strong id="studentNameResult"></strong>
+
+        </div>
 
 
         <!-- 성적표 -->
-        <section id="report" class="report">
+        <table>
 
-            <div class="report-header">
-                <h2>성 적 표</h2>
-                <p id="semester"></p>
-            </div>
+            <thead>
+                <tr>
+                    <th>과목</th>
+                    <th>점수</th>
+                </tr>
+            </thead>
 
-            <div class="student-info">
-                <div>
-                    <span>성명</span>
-                    <strong id="name"></strong>
-                </div>
+            <tbody id="subjectList"></tbody>
 
-                <div>
-                    <span>학번</span>
-                    <strong id="studentNumber"></strong>
-                </div>
-            </div>
+            <tfoot>
+                <tr>
+                    <th>평균</th>
+                    <th id="average"></th>
+                </tr>
+            </tfoot>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>과목</th>
-                        <th>점수</th>
-                    </tr>
-                </thead>
+        </table>
 
-                <tbody id="subjectList"></tbody>
 
-                <tfoot>
-                    <tr>
-                        <th>평균</th>
-                        <th id="average"></th>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="report-bottom">
+            성적 조회 시스템
+        </div>
 
-            <p class="footer-text">성적 조회 시스템</p>
+    </section>
 
-        </section>
+</div>
 
-    </main>
+<script src="script.js"></script>
 
-    <script src="script.js"></script>
 </body>
 </html>
