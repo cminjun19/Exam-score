@@ -1,0 +1,55 @@
+[
+    {
+        "gradeCode": "A7K29P",
+        "studentId": "20260001",
+        "name": "홍길동",
+        "password": "123456",
+        "semester": "2026학년도 1학기",
+        "subjects": [
+            {
+                "name": "국어",
+                "score": 92
+            },
+            {
+                "name": "수학",
+                "score": 88
+            },
+            {
+                "name": "영어",
+                "score": 95
+            },
+            {
+                "name": "과학",
+                "score": 90
+            }
+        ],
+        "average": "91.3"
+    },
+
+    {
+        "gradeCode": "B4M82Q",
+        "studentId": "20260002",
+        "name": "김민수",
+        "password": "654321",
+        "semester": "2026학년도 1학기",
+        "subjects": [
+            {
+                "name": "국어",
+                "score": 85
+            },
+            {
+                "name": "수학",
+                "score": 96
+            },
+            {
+                "name": "영어",
+                "score": 89
+            },
+            {
+                "name": "과학",
+                "score": 94
+            }
+        ],
+        "average": "91.0"
+    }
+]
